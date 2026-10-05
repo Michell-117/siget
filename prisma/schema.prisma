@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas = ["vut"]
+}
+
+model generos {
+  id_genero Int        @id @default(autoincrement())
+  nombre    String     @unique @db.VarChar(20)
+  usuarios  usuarios[]
+  @@schema("vut")
+}
+
+model operadores {
+  id_operadores      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nombre_usuario     String    @unique @db.VarChar(50)
+  clave              String    @db.VarChar(255)
+  fecha_creacion     DateTime? @default(now()) @db.Timestamptz(6)
+  fecha_modificacion DateTime? @default(now()) @db.Timestamptz(6)
+  @@schema("vut")
+}
+
+model usuarios {
+  id_usuario         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nombre1            String    @db.VarChar(50)
+  nombre2            String?   @db.VarChar(50)
+  apellido1          String    @db.VarChar(50)
+  apellido2          String?   @db.VarChar(50)
+  fecha_nacimiento   DateTime  @db.Date
+  id_genero          Int
+  fecha_creacion     DateTime? @default(now()) @db.Timestamptz(6)
+  fecha_modificacion DateTime? @default(now()) @db.Timestamptz(6)
+  generos            generos   @relation(fields: [id_genero], references: [id_genero], onDelete: NoAction, onUpdate: NoAction, map: "fk_usuarios_genero")
+  @@schema("vut")
+}

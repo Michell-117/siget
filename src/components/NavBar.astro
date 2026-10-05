@@ -1,0 +1,92 @@
+---
+
+---
+
+<!-- component -->
+<nav class="bg-white border-b border-orange-600 px-6 py-3 select-none">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    
+    <!-- Lado Izquierdo: Marca y Enlaces de Navegación -->
+    <div class="flex items-center space-x-8">
+      
+      <!-- 1. Marca / Nombre del Sistema (Solo Texto) -->
+      <span class="text-xl font-bold tracking-wider text-slate-800">
+        S I G E T
+      </span>
+
+      <!-- Menú Principal con Submenús (Hover) -->
+      <div class="flex items-center space-x-1 text-sm font-medium text-slate-600">
+
+        <!-- 2. Ingresos (Solo visible si tiene el permiso: 'VER_INGRESOS') -->
+        <!-- NOTA: Si el usuario NO tiene permiso, puedes añadir la clase "hidden" o usar tu ORM/Template engine para no renderizarlo -->
+        <div class="relative group py-2">
+          <button class="inline-flex items-center space-x-1 hover:text-slate-900 transition-colors focus:outline-none">
+            <span>Ingresos</span>
+            <svg class="w-4 h-4 text-orange-600 group-hover:text-slate-600 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <!-- Submenú -->
+          <div class="absolute left-0 top-full mt-1 w-48 bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 ease-out z-50 py-1">
+            <a href="/ingresos/registro" class="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-600 hover:text-slate-100">Nuevo Registro</a>
+            <a href="/ingresos/historial" class="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-600 hover:text-slate-100">Historial</a>
+            <a href="/ingresos/pendientes" class="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-600 hover:text-slate-100">Pendientes</a>
+          </div>
+        </div>
+
+        <!-- 3. Respuestas (Solo visible si tiene el permiso: 'VER_RESPUESTAS') -->
+        <div class="relative group py-2">
+          <button class="inline-flex items-center space-x-1 hover:text-slate-900 transition-colors focus:outline-none">
+            <span>Respuestas</span>
+            <svg class="w-4 h-4 text-orange-600 group-hover:text-slate-600 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <!-- Submenú -->
+          <div class="absolute left-0 top-full mt-1 w-48 bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 ease-out z-50 py-1">
+            <a href="/respuestas/enviadas" class="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-600 hover:text-slate-100">Enviadas</a>
+            <a href="/respuestas/plantillas" class="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-600 hover:text-slate-100">Plantillas</a>
+          </div>
+        </div>
+
+        <!-- 4. Estadísticas (Solo visible si tiene el permiso: 'VER_ESTADISTICAS') -->
+        <div class="relative group py-2">
+          <button class="inline-flex items-center space-x-1 hover:text-slate-900 transition-colors focus:outline-none">
+            <span>Estadísticas</span>
+            <svg class="w-4 h-4 text-orange-600 group-hover:text-slate-600 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <!-- Submenú -->
+          <div class="absolute left-0 top-full mt-1 w-48 bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 ease-out z-50 py-1">
+            <a href="/estadisticas/general" class="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-600 hover:text-slate-100">General</a>
+            <a href="/estadisticas/reportes" class="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-600 hover:text-slate-100">Exportar Reportes</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Lado Derecho: Usuario y Acción -->
+    <div class="flex items-center space-x-4 text-sm">
+      
+      <!-- 5. Nombre del Usuario -->
+      <div class="flex items-center space-x-2 text-slate-700 font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span> <!-- Indicador visual opcional (En línea) -->
+        <span>Juan Pérez</span>
+      </div>
+
+      <!-- Separador discreto -->
+      <div class="h-4 w-px bg-slate-200"></div>
+
+      <!-- 7. Botón Cerrar Sesión -->
+      <button 
+        type="button"
+        class="inline-flex items-center px-3 py-1.5 border border-slate-300 text-xs font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-400">
+        Cerrar Sesión
+      </button>
+
+    </div>
+
+  </div>
+</nav>
