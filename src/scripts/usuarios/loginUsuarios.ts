@@ -1,9 +1,10 @@
 import { actions, isInputError } from "astro:actions";
 
-const formulario = document.getElementById("formulario_creacion_usuario") as HTMLFormElement;
+const formulario = document.getElementById("formulario_login_usuario") as HTMLFormElement;
 const divMensaje = document.getElementById("mensaje-estado") as HTMLDivElement;
 
 formulario?.addEventListener("submit", async (evento)=>{
+
     evento.preventDefault();
 
     if (divMensaje) {
@@ -13,18 +14,19 @@ formulario?.addEventListener("submit", async (evento)=>{
 
     const dataFormulario = new FormData(formulario);
 
-    // llamamos la action crearUsuario y pasamos los datos del formulario
-     const { data, error } = await actions.crearUsuario(dataFormulario)
+     const { data, error } = await actions.loginUsuario(dataFormulario)
 
     if(error){
         
         if (divMensaje) {
-            
+
             divMensaje.style.color = "red";
 
             if (isInputError(error)) {
-                const primerError = Object.values(error.fields)[0]?.[0];
-                divMensaje.textContent = primerError || 'Por favor verifica los datos ingresados';
+                divMensaje.textContent = 
+                    error.fields.nombre_usuario?.[0] ||
+                    error.fields.clave?.[0] ||
+                    'Completar campos correctamente'
             } else {
                 divMensaje.textContent = error.message
             }
@@ -33,11 +35,8 @@ formulario?.addEventListener("submit", async (evento)=>{
         return;
     }
 
-    if(divMensaje){
-        divMensaje.textContent = data?.message;
-        divMensaje.style.color = "green";
+    if(data?.success){
+        window.location.href = '/'
     }
-
-    formulario.reset();
 
 });

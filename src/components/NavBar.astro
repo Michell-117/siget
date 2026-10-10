@@ -1,5 +1,5 @@
 ---
-
+const {user} = Astro.locals;
 ---
 
 <!-- component -->
@@ -73,7 +73,7 @@
       <!-- 5. Nombre del Usuario -->
       <div class="flex items-center space-x-2 text-slate-700 font-medium">
         <span class="w-2 h-2 rounded-full bg-emerald-500"></span> <!-- Indicador visual opcional (En línea) -->
-        <span>Juan Pérez</span>
+        <span>{user?.usuario}</span>
       </div>
 
       <!-- Separador discreto -->
@@ -81,8 +81,9 @@
 
       <!-- 7. Botón Cerrar Sesión -->
       <button 
+        id="btn-logout"
         type="button"
-        class="inline-flex items-center px-3 py-1.5 border border-slate-300 text-xs font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-400">
+        class="cursor-pointer inline-flex items-center px-3 py-1.5 border border-slate-300 text-xs font-medium rounded-md text-white bg-orange-600 hover:bg-red-800 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-400">
         Cerrar Sesión
       </button>
 
@@ -90,3 +91,5 @@
 
   </div>
 </nav>
+
+<script src="../scripts/usuarios/logoutUsuarios.ts"></script>
